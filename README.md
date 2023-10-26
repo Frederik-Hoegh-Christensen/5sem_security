@@ -3,9 +3,9 @@
 ## To run the project:
 1.
 install requirements:
-´´´
+```sh
 pip install -r requirements.txt
-´´´
+```
 
 2. stand in the 5sem_security directory
 
