@@ -6,13 +6,14 @@ import help
 
 # Global variable to store the received message
 received_msg = []
-bob_value = 200
-shares = help.split_num_to_shares(200)
+charlie_value = 300
+shares = help.split_num_to_shares(charlie_value)
 message_to_alice = str(shares[1])
-message_to_charlie = str(shares[2])
+message_to_bob = str(shares[2])
 received_msg.append(str(shares[0]))
+
 # Function to start the server
-def start_bob_server():
+def start_charlie_server():
     global received_msg  # Declare the variable as global to modify it within the function
 
     context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
@@ -20,14 +21,13 @@ def start_bob_server():
 
     # Create a server socket that listens for incoming connections
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_sock:
-        server_sock.bind(('0.0.0.0', 8443))
+        server_sock.bind(('0.0.0.0', 8445))
         server_sock.listen(5)
 
-        print("Bobs server is listening on port 8443...")
+        print("Charlie server is listening on port 8445...")
 
         try:
             while True:
-                # Accept an incoming connection
                 if len(received_msg) == 3:
                     sum = 0
                     for elem in received_msg:
@@ -42,6 +42,8 @@ def start_bob_server():
                         except:
                             time.sleep(1)
 
+                
+                # Accept an incoming connection
                 
                 conn, addr = server_sock.accept()
 
@@ -89,13 +91,12 @@ def get_received_message():
 
 if __name__ == '__main__':
     # Start the server in a separate thread
-    server_thread = threading.Thread(target=start_bob_server)
+    server_thread = threading.Thread(target=start_charlie_server)
     server_thread.start()
- 
-    client_thread = threading.Thread(target=send_message_to_server, args=(8444, message_to_alice,))
+    client_thread = threading.Thread(target=send_message_to_server, args=(8443, message_to_bob,))
     client_thread.start()
-    client_thread = threading.Thread(target=send_message_to_server, args=(8445, message_to_charlie,))
+    client_thread = threading.Thread(target=send_message_to_server, args=(8444, message_to_alice,))
     client_thread.start()
 
     # The main thread can continue running and provide access to the received message
-   
+    

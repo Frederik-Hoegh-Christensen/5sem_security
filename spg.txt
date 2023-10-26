@@ -1,0 +1,6 @@
+er det rimligt at opdele på randint
+skal hospitalet vide hvilken value der hører til hvem?
+er python socket / tls okay?
+er der andet vi endnu ikke har taget højde for?
+er det fint at have self-signed certificates?
+skal data krypteres
