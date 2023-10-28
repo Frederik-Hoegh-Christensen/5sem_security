@@ -17,5 +17,5 @@ foreach ($i in 0..($Ports.Length - 1)) {
     Start-Process -FilePath "py" -ArgumentList "$Script", "$Port" -WorkingDirectory $CurrentDir
 
     # Sleep for a moment to allow the server to start before moving on
-    Start-Sleep -Seconds 5
+    Start-Sleep -Seconds 2
 }
