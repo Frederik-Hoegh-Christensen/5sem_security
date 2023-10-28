@@ -3,7 +3,8 @@
 ## how to run the project:
 
 1. When standing in 5sem_security directory from terminal write: 
-```cd app
+```sh
+cd app
 ```
 
 On windows run: 
